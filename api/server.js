@@ -10,7 +10,7 @@ const server = app.listen('3002', () => {
     console.log('server running on https://localhost:3000')
 })
 
-const io = socket(server, {  
+io = socket(server, {  
     cors: {    
         origin: '*',    
         methods: ["GET", "POST"],    
