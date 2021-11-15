@@ -1,0 +1,10 @@
+nav {
+    text-align: center;
+    background-color: darkred;
+    padding: 10px;
+}
+
+.navTitle {
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+}
