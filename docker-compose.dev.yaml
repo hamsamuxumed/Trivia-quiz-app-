@@ -3,7 +3,7 @@ services:
     container_name: Quiz-your-mind_api
     ports:
       - 3000:3000
-    enviroments: 
+    environments: 
       - PGUSER=quizuser
       - PGHOST=db
       - PGPASSWORD=quizpass
