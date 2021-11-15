@@ -25,6 +25,11 @@ io.on('connection', (socket) => {
         socket.join(data);
         console.log('user is in room: ' + data)
     })
+    
+    socket.on('username', (data) => {
+        console.log('username is' + data)
+    })
+
     socket.on('disconnect', () => {
         console.log('user disconnected')
     })
