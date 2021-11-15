@@ -1,0 +1,31 @@
+services:
+  api:
+    container_name: Quiz-your-mind_api
+    ports:
+      - 3000:3000
+    enviroments: 
+      - PGUSER=quizuser
+      - PGHOST=db
+      - PGPASSWORD=quizpass
+      - PGDATABASE=quiz
+      - PGPORT=5432
+      - NODE_ENV=development
+    depends_on:
+      - db
+    command: bash -c "npm install && npm run seedDev && npm run dev"
+  
+  db:
+    container_name: Quiz-your-mind_db
+    volumes:
+      - "dbdata:/var/lib/postgresql/data"
+    environment: 
+      - POSTGRES_DB=quiz
+      - POSTGRES_USER=quizuser
+      - POSTGRES_PASSWORD=quizpass
+  
+volumes:
+  dbdata:
+networks: 
+  default:
+    name: quiz_api
+
