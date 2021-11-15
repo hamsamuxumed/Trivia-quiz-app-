@@ -1,10 +1,15 @@
-import React from 'react'
-import {Socket} from './components/index'
+import React from 'react';
+import * as Pages from './Pages';
+import { Header } from './components';
+import { Footer } from './components';
+import './style.css'
 
 function App (){
     return(
         <div id='app'>
-            <Socket />
+            <Header />
+            <Pages.Home />
+            <Footer />
         </div>
     )
 }
