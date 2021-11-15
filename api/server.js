@@ -8,6 +8,7 @@ const socket = require('socket.io');
 app.use(cors())
 app.use(express.json())
 
+// connect routes to server.js
 const server = app.listen('3000', () => {
     console.log('server running on https://localhost:3000')
 })
