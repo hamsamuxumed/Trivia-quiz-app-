@@ -2,7 +2,7 @@ import React, {useState, useEffect } from 'react';
 import io from 'socket.io-client'
 
 let socket;
-const CONNECTION_URL = 'https://localhost:3000/'
+const CONNECTION_URL = 'http://localhost:3000/'
 
 export const Socket = () => {
     const [login, setLogin] = useState(false)

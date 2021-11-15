@@ -6,7 +6,7 @@ const cors = require('cors')
 app.use(cors())
 app.use(express.json())
 
-const server = app.listen('3002', () => {
+const server = app.listen('3000', () => {
     console.log('server running on https://localhost:3000')
 })
 
