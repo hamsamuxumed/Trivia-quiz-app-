@@ -1,8 +1,9 @@
 const express = require('express');
-const socket = require('socket.io');
 const app = express();
 const cors = require('cors')
 const axios = require('axios')
+
+const socket = require('socket.io');
 
 app.use(cors())
 app.use(express.json())
@@ -11,9 +12,14 @@ const server = app.listen('3000', () => {
     console.log('server running on https://localhost:3000')
 })
 
-
-
-const io = socket(server);
+io = socket(server, {
+    cors: {
+        origin: '*',
+        methods: ["GET", "POST"],
+        allowedHeaders: ["my-custom-header"],
+        credentials: true
+    }
+});
 
 io.on('connection', (socket) => {
     console.log(socket.id)
@@ -23,7 +29,7 @@ io.on('connection', (socket) => {
         socket.join(data);
         console.log('user is in room: ' + data)
     })
-    
+
     socket.on('username', (data) => {
         console.log('username is' + data)
     })
