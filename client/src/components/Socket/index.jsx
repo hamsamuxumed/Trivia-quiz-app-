@@ -8,6 +8,7 @@ export const Socket = () => {
     const [login, setLogin] = useState(false)
     const [room, setRoom] = useState('')
     const [userName, setUsername] = useState('')
+    const [count, setCount] = useState(0)
 
     useEffect(() => {
         socket = io(CONNECTION_URL, {  
@@ -21,7 +22,12 @@ export const Socket = () => {
     const connectRoom = () => {
         setLogin(true)
         socket.emit('join_room', room)
+        socket.emit('username', userName)
     }
+    function handleClick (){
+        setCount((prevCount) => prevCount + 1)
+    }
+
     return(
         <div>
             {!login ? (
@@ -33,7 +39,10 @@ export const Socket = () => {
                         setRoom(e.target.value)
                     }}/>
                     <button onClick={connectRoom}>enter quiz</button>
-                </form>):(<h1>you are in</h1>
+                </form>):(<div>
+                    <button onClick={handleClick}>{count}</button>
+
+                </div>
             )}
         </div>
     )
