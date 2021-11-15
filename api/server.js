@@ -10,7 +10,7 @@ const server = app.listen('3000', () => {
     console.log('server running on https://localhost:3000')
 })
 
-const io = socket(server, {  
+io = socket(server, {  
     cors: {    
         origin: '*',    
         methods: ["GET", "POST"],    
@@ -25,6 +25,11 @@ io.on('connection', (socket) => {
         socket.join(data);
         console.log('user is in room: ' + data)
     })
+    
+    socket.on('username', (data) => {
+        console.log('username is' + data)
+    })
+
     socket.on('disconnect', () => {
         console.log('user disconnected')
     })
