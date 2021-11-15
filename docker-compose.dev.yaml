@@ -4,7 +4,7 @@ services:
     ports: 
       - 3000:3000
     environment: 
-      - PGUSER=quizard
+      - PGUSER=quizuser
       - PGHOST=db
       - PGPASSWORD=quizpass
       - PGDATABASE=quizDB
@@ -20,7 +20,7 @@ services:
       - "dbdata:/var/lib/postgresql/data"
     environment: 
       - POSTGRES_DB=quizDB
-      - POSTGRES_USER=quizard
+      - POSTGRES_USER=quizuser
       - POSTGRES_PASSWORD=quizpass
 volumes:
   dbdata:
