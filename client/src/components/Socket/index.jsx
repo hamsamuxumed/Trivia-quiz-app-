@@ -1,5 +1,6 @@
-import React, {useState, useEffect } from 'react';
-import io from 'socket.io-client'
+import React, { useState, useEffect } from 'react';
+import io from 'socket.io-client';
+import './style.css';
 
 let socket;
 const CONNECTION_URL = 'http://localhost:3000/'
@@ -31,14 +32,15 @@ export const Socket = () => {
     return(
         <div>
             {!login ? (
-                <form id='roomJoin'>
+                <form className ='roomJoin' id='roomJoin'>
+                    <h2>Enter your username and room number</h2>
                     <input placeholder='name' onChange={(e) => {
                         setUsername(e.target.value)
                     }}/>
                     <input placeholder='room' onChange={(e) => {
                         setRoom(e.target.value)
                     }}/>
-                    <button onClick={connectRoom}>enter quiz</button>
+                    <button onClick={connectRoom}>Enter</button>
                 </form>):(<div>
                     <button onClick={handleClick}>{count}</button>
 
