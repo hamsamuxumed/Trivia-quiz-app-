@@ -7,7 +7,7 @@ const socket = require('socket.io');
 
 app.use(cors())
 app.use(express.json())
-
+// connect routes to server.js
 const server = app.listen('3000', () => {
     console.log('server running on https://localhost:3000')
 })
@@ -24,7 +24,7 @@ io = socket(server, {
 io.on('connection', (socket) => {
     console.log(socket.id)
 
-    
+
     socket.on('join_room', (data) => {
         socket.join(data);
         console.log('user is in room: ' + data)
@@ -33,14 +33,14 @@ io.on('connection', (socket) => {
     socket.on('username', (data) => {
         console.log('username is' + data)
     })
-    
+
     socket.on('track_score', (data) => {
         console.log('your score is ' + data)
     })
-    
+
     socket.on('start_game', (data) => {
         console.log('data in start game ' + data)
-        async function apiCall(){
+        async function apiCall() {
             try {
                 const trivia = await axios.get('https://opentdb.com/api.php?amount=10');
                 console.log(trivia.data.results)
