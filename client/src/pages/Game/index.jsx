@@ -4,7 +4,7 @@ import { RoomLeaderboard } from '../../components/index';
 import io from 'socket.io-client';
 import './style.css';
 
-export function Game({socket, userName, roomNum }) {
+export function Game({ socket, userName, roomNum }) {
     let room = roomNum;
     //const [count, setCount] = useState(0);
     const [score, setScore] = useState(0);
@@ -29,7 +29,7 @@ export function Game({socket, userName, roomNum }) {
         let button = document.getElementById(buttonId);
         button.style.display = 'block';
     }
-    
+
     useEffect(() => {
         console.log('in useEffect')
         socket.on('receive_q', (data) => {
@@ -46,9 +46,9 @@ export function Game({socket, userName, roomNum }) {
             data.map((r) => { leaderboard_room.push(r) })
             setLeaderboard(leaderboard_room)
             console.log(leaderboard_room)
-            //get names to room leaderboard
             hideButton('endButton');
             hideButton('scoreItem');
+            setQuestions([])
         })
 
     }, [endGame])
@@ -56,25 +56,25 @@ export function Game({socket, userName, roomNum }) {
     function handleClick() {
         setScore((prevCount) => prevCount + 1)
     }
-    
+
     function handleEnd() {
         setEndgame((prevEnd) => !prevEnd)
         const data = [room, endGame]
         socket.emit('endgame', data)
-        //setQuestions([]);
+        setQuestions([]);
     }
 
     function handleStart() {
         socket.emit('start_game', room)
         setStart((prevEnd) => !prevEnd)
     }
-    
+
     const getUserScores = () => {
-        const scores = leaderboard.map((u, i) => 
-        <li key={i}>
-            <span>{u.username}</span>
-            <span>{u.score}</span>
-        </li>
+        const scores = leaderboard.map((u, i) =>
+            <li key={i}>
+                <span>{u.username}</span>
+                <span>{u.score}</span>
+            </li>
         )
         return scores;
     }
