@@ -25,6 +25,8 @@ export const Socket = () => {
 
     const connectRoom = () => {
         setLogin(true)
+        const data = [userName, count, room]
+        socket.emit('all_data', data)
         socket.emit('join_room', room)
         socket.emit('username', userName)
     }
