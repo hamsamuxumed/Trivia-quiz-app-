@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { RoomButton } from '../../components/RoomButton';
 import { Lobby } from '../../pages/index';
 import io from 'socket.io-client';
 import './style.css';
@@ -39,43 +38,11 @@ export const Socket = () => {
     }
 
     useEffect(() => {
-        console.log('in useEffect')
         socket.on('receive_q', (data) => {
             console.log('questions' + JSON.stringify(data))
             setQuestions(JSON.stringify(data))
         })
     }, [startGame])
-
-    useEffect(() => {
-        let leaderboard_room = []
-        socket.on('send_score', (data) => {
-            data.map((r) => { leaderboard_room.push(r.score) })
-            setLeaderboard(leaderboard_room)
-            //get names to room leaderboard
-
-        })
-
-    }, [endGame])
-
-    function handleClick() {
-        setScore((prevCount) => prevCount + 1)
-    }
-
-    function handleEnd() {
-        setEndgame((prevEnd) => !prevEnd)
-        const data = [room, endGame]
-        socket.emit('endgame', data)
-        socket.on('hide_button', (data) => {
-
-            setButtonShow(data)
-        })
-    }
-
-    function handleStart() {
-        socket.emit('start_game', room)
-        setStart((prevEnd) => !prevEnd)
-    }
-
 
     const genRoomId = () => {
         let roomId ='';
@@ -85,8 +52,9 @@ export const Socket = () => {
             roomId += chars.charAt(Math.floor(Math.random() * charLen));
         }
         setLogin(true)
-        console.log(roomId)
+        const data = [userName, score, roomId]
         socket.emit('join_room', roomId)
+        socket.emit('all_data', data)
         socket.emit('username', userName)
         setRoom(roomId)
     }
@@ -103,8 +71,8 @@ export const Socket = () => {
                     setRoom(e.target.value)
                 }}/>
                 <button onClick={connectRoom} disabled={!(userName.length >= 3)} >Enter</button>
-                <RoomButton onClick={genRoomId} userName={userName} room={room}/>
-            </form>):(<Lobby roomNum={room}/>)}
+                <button onClick={genRoomId} disabled={!(userName.length >= 3)}>Create a Room</button>
+            </form>):(<Lobby socket={socket} userName={userName} roomNum={room}/>)}
         </div>
     )
 }
