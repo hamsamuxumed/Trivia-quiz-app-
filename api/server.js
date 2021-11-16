@@ -25,9 +25,10 @@ io.on('connection', (socket) => {
     console.log(socket.id)
 
 
-    socket.on('join_room', (data) => {
+    socket.on('join_room', (data, cb) => {
         socket.join(data);
         console.log('user is in room: ' + data)
+        cb(`Joined room: ${data}`)
     })
 
     socket.on('username', (data) => {

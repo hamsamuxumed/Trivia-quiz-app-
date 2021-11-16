@@ -10,7 +10,7 @@ export const Socket = () => {
     const [room, setRoom] = useState('')
     const [userName, setUsername] = useState('')
     const [count, setCount] = useState(0)
-    const [questionList, setQuestions]= useState([])
+    const [questionList, setQuestions] = useState([])
     const [endGame, setEndgame] = useState(false);
     const [startGame, setStart] = useState(false)
 
@@ -18,50 +18,52 @@ export const Socket = () => {
         socket = io(CONNECTION_URL)
     }, [CONNECTION_URL]);
 
-    
+
     useEffect(() => {
         socket.emit('track_score', count)
     }, [endGame])
 
     const connectRoom = () => {
         setLogin(true)
-        socket.emit('join_room', room)
+        socket.emit('join_room', room, message => {
+            displayMessage(message) //set state
+        })
         socket.emit('username', userName)
     }
 
     useEffect(() => {
         console.log('in useEffect')
         socket.on('receive_q', (data) => {
-            console.log('questions'+ JSON.stringify(data))
+            console.log('questions' + JSON.stringify(data))
             setQuestions(JSON.stringify(data))
         })
-    },[startGame])
+    }, [startGame])
 
-    function handleClick (){
+    function handleClick() {
         setCount((prevCount) => prevCount + 1)
     }
 
-    function handleEnd (){
+    function handleEnd() {
         setEndgame((prevEnd) => !prevEnd)
     }
 
-    function handleStart(){
+    function handleStart() {
         socket.emit('start_game', room)
         setStart((prevEnd) => !prevEnd)
     }
-    return(
+    return (
         <div>
             {!login ? (
-                <form className ='roomJoin' id='roomJoin'>
+                <form className='roomJoin' id='roomJoin'>
                     <h2>Enter your username and room number</h2>
                     <input placeholder='name' onChange={(e) => {
                         setUsername(e.target.value)
-                    }}/>
+                    }} />
                     <input placeholder='room' onChange={(e) => {
                         setRoom(e.target.value)
-                    }}/>
+                    }} />
                     <button onClick={connectRoom}>Enter</button>
-                </form>):(<div>
+                </form>) : (<div>
                     <button onClick={handleClick}>{count}</button>
                     <button onClick={handleEnd}>end game</button>
                     <button onClick={handleStart}>start game</button>
