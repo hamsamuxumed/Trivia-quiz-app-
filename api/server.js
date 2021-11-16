@@ -59,7 +59,6 @@ io.on('connection', (socket) => {
         apiCall()
     })
 
-
     socket.on('disconnect', () => {
         console.log('user disconnected')
     })
