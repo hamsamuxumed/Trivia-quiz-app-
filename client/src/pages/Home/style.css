@@ -1,7 +1,7 @@
 .formGrid {
     display: grid;
-    grid-template-columns: 35% 35%;
-    column-gap: 5rem;
+    /* grid-template-columns: 35% 35%; */
+    /* column-gap: 5rem; */
     /* padding: 0 5rem; */
     justify-content: center;
 }
