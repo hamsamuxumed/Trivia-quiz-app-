@@ -48,9 +48,18 @@ io.on('connection', (socket) => {
     socket.on('endgame', (data) => {
         async function get_r_leaderboard() {
             try {
-                const room_leaderboard = await Leaderboard.getRoomLeaderboard(data)
-                io.in(data).emit('receive_room_leaderboard', room_leaderboard)
-                console.log(room_leaderboard)
+                const room_leaderboard = await Leaderboard.getRoomLeaderboard(data[0])
+                // io.in(data[0]).emit('receive_room_leaderboard', room_leaderboard)
+                if (!data[1]) {
+                    console.log("in IF statement")
+                    let leaderboard_r = [];
+                   
+                    room_leaderboard.map((s) => { leaderboard_r.push(s.score) })
+                    
+                    io.in(data[0]).emit('send_score', leaderboard_r)
+                    io.in(data[0]).emit('hide_button','none' )
+                }
+
             } catch (error) {
                 console.log(err)
             }
