@@ -8,7 +8,7 @@ const socket = require('socket.io');
 
 app.use(cors())
 app.use(express.json())
-app.use('/leadboard', leaderboardRoutes);
+app.use('/leaderboard', leaderboardRoutes);
 
 // connect routes to server.js
 const server = app.listen('3000', () => {

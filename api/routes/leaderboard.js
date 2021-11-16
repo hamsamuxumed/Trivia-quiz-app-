@@ -3,6 +3,6 @@ const router = express.Router();
 const leaderboardController = require('../controllers/leaderboard');
 
 
-router.get('/leaderboard', leaderboardController.index)
+router.get('/users', leaderboardController.index)
 
 module.exports = router;
