@@ -10,13 +10,13 @@ class Leaderboard {
     }
 
     static get all() {
-        return new Promise(async (resolve, reject) => {
+        return new Promise(async (res, rej) => {
             try {
                 const result = await db.query('SELECT * FROM Leaderboard;')
                 const leaderboard = result.rows.map(l => new Leaderboard(l))
-                resolve(leaderboard)
+                res(leaderboard)
             } catch (err) {
-                reject(`Error retrieving Leaderboard ${err}`)
+                rej(`Error retrieving Leaderboard ${err}`)
 
             }
         })
@@ -28,7 +28,7 @@ class Leaderboard {
                 let user = new Leaderboard(insertQuery.rows[0])
                 res(user)
             } catch (err) {
-                re(`failed to create user ${err}`)
+                rej(`failed to create user ${err}`)
             }
         })
     }
@@ -45,6 +45,20 @@ class Leaderboard {
             }
         })
     }
+
+    static getRoomLeaderboard(room) {
+        return new Promise(async (res, rej) => {
+            try {
+                let roomQuery = await db.query(`SELECT (score, username)FROM Leaderboard WHERE room = $1`, [room])
+                let roomLeaderboard = roomQuery.rows.map(r => new Leaderboard(r))
+                res(roomLeaderboard)
+            } catch (err) {
+                rej(`Failed to get room leaderboard- ${err}`)
+            }
+        })
+    }
+
+
 
 }
 module.exports = Leaderboard

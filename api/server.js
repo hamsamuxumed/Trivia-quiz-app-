@@ -45,12 +45,18 @@ io.on('connection', (socket) => {
 
     })
 
+    socket.on('endgame', (data) => {
+        io.in(data).emit('receive_room_leaderboard', Leaderboard.getRoomLeaderboard(data))
+        console.log(Leaderboard.getRoomLeaderboard(data))
+
+    })
+
     socket.on('track_score', (data) => {
         console.log('your score is ' + data)
-        async function updateScore(req, res) {
+        async function updateScore() {
             try {
-                const score = await Leaderboard.update(data[0], socket.id);
-                res('Score updated' + score)
+                await Leaderboard.update(data[0], socket.id);
+
             } catch (err) {
                 console.log(err)
             }
@@ -75,10 +81,10 @@ io.on('connection', (socket) => {
     })
     socket.on('all_data', (data) => {
         console.log(data)
-        async function createUser(req, res) {
+        async function createUser() {
             try {
-                const user = await Leaderboard.create(data, socket.id)
-                res('user created' + user)
+                await Leaderboard.create(data, socket.id)
+
             } catch (err) {
                 console.log(err)
             }

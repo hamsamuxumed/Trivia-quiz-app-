@@ -44,6 +44,13 @@ export const Socket = () => {
         })
     }, [startGame])
 
+    useEffect(() => {
+        socket.emit('endgame', room)
+        socket.on("receive_room_leaderboard", (data) => {
+            console.log(JSON.stringify(data))
+        })
+    }, [endGame])
+
     function handleClick() {
         setScore((prevCount) => prevCount + 1)
     }
