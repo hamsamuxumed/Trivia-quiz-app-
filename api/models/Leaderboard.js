@@ -49,7 +49,7 @@ class Leaderboard {
     static getRoomLeaderboard(room) {
         return new Promise(async (res, rej) => {
             try {
-                let roomQuery = await db.query(`SELECT (score, username)FROM Leaderboard WHERE room = $1`, [room])
+                let roomQuery = await db.query(`SELECT *  FROM Leaderboard WHERE room = $1;`, [room])
                 let roomLeaderboard = roomQuery.rows.map(r => new Leaderboard(r))
                 res(roomLeaderboard)
             } catch (err) {

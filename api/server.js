@@ -46,8 +46,16 @@ io.on('connection', (socket) => {
     })
 
     socket.on('endgame', (data) => {
-        io.in(data).emit('receive_room_leaderboard', Leaderboard.getRoomLeaderboard(data))
-        console.log(Leaderboard.getRoomLeaderboard(data))
+        async function get_r_leaderboard() {
+            try {
+                const room_leaderboard = await Leaderboard.getRoomLeaderboard(data)
+                io.in(data).emit('receive_room_leaderboard', room_leaderboard)
+                console.log(room_leaderboard)
+            } catch (error) {
+                console.log(err)
+            }
+        }
+        get_r_leaderboard()
 
     })
 

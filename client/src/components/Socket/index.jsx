@@ -13,6 +13,7 @@ export const Socket = () => {
     const [questionList, setQuestions] = useState([])
     const [endGame, setEndgame] = useState(false);
     const [startGame, setStart] = useState(false)
+    const [leaderboard, setLeaderboard] = useState([])
 
     useEffect(() => {
         socket = io(CONNECTION_URL)
@@ -45,17 +46,22 @@ export const Socket = () => {
     }, [startGame])
 
     useEffect(() => {
-        socket.emit('endgame', room)
+
+        let leaderboard_r = []
         socket.on("receive_room_leaderboard", (data) => {
-            console.log(JSON.stringify(data))
+            data.map((r) => { leaderboard_r.push(r.score) })
+            setLeaderboard(leaderboard_r)
         })
     }, [endGame])
+
+
 
     function handleClick() {
         setScore((prevCount) => prevCount + 1)
     }
 
     function handleEnd() {
+        socket.emit('endgame', room)
         setEndgame((prevEnd) => !prevEnd)
     }
 
@@ -71,15 +77,18 @@ export const Socket = () => {
                     <input placeholder='name' onChange={(e) => {
                         setUsername(e.target.value)
                     }} />
+
                     <input placeholder='room' onChange={(e) => {
                         setRoom(e.target.value)
                     }} />
                     <button onClick={connectRoom}>Enter</button>
                 </form>) : (<div>
-                    <button onClick={handleClick}>{score}</button>
-                    <button onClick={handleEnd}>end game</button>
                     <button onClick={handleStart}>start game</button>
+                    <button onClick={handleEnd}>end game</button>
                     <h1>questions is : {questionList}</h1>
+                    <h1 id="leaderboard">your leaderboard{leaderboard}</h1>
+                    {!endGame ? <button onClick={handleClick}>{score}</button> : <h1 > Game has ended</h1>}
+
                 </div>
             )}
         </div>
