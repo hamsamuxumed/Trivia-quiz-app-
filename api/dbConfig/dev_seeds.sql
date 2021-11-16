@@ -1,4 +1,3 @@
-
 INSERT INTO Leaderboard (username, score)
 VALUES 
 ('bob', 5),
