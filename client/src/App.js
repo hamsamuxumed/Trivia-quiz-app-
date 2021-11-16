@@ -1,16 +1,16 @@
 import React from 'react';
-import * as Pages from './Pages';
+import * as Pages from './pages';
 import { Header } from './components';
 import { Footer } from './components';
-import { Switch, Route } from 'react-router-dom';
+//import { Switch, Route } from 'react-router-dom';
 import './style.css'
 
 function App (){
     return(
         <div id='app'>
             <Header />
-
-                <Switch>
+                <Pages.Home/>
+                {/* <Switch>
                     <Route exact path='/'>
                         <Pages.Home />
                     </Route>
@@ -20,7 +20,7 @@ function App (){
                     <Route path='/game'>
                         <Pages.Game />
                     </Route>
-                </Switch>
+                </Switch> */}
             <Footer />
         </div>
     )

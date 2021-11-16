@@ -1,7 +1,6 @@
 import React from 'react';
 import { Socket } from '../../components';
 // import CreateForm from '../../components/CreateForm';
-import { RoomButton } from '../../components/RoomButton';
 import './style.css';
 
 export const Home = () => {
@@ -9,7 +8,6 @@ export const Home = () => {
         <>
         <div className="formGrid">
             <Socket />
-            {/* <RoomButton /> */}
         </div>
         </>
     )

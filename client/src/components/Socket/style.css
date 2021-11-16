@@ -37,3 +37,7 @@
     cursor: pointer;
     background-color: var(--dark-red);
 }
+
+.roomJoin button:disabled {
+    background-color: grey;
+}
