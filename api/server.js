@@ -27,26 +27,55 @@ io = socket(server, {
     }
 });
 
-io.on('connection', (socket) => {
-    console.log(socket.id)
 
-    
+
+io.on('connection', (socket) => {
+
+
+
     socket.on('join_room', (data) => {
         socket.join(data);
         console.log('user is in room: ' + data)
+        // cb(`Joined room: ${data}`)
     })
 
     socket.on('username', (data) => {
+        console.log(socket.id)
         console.log('username is' + data)
+
     })
-    
+
+    socket.on('endgame', (data) => {
+        async function get_r_leaderboard() {
+            try {
+                const room_leaderboard = await Leaderboard.getRoomLeaderboard(data)
+                io.in(data).emit('receive_room_leaderboard', room_leaderboard)
+                console.log(room_leaderboard)
+            } catch (error) {
+                console.log(err)
+            }
+        }
+        get_r_leaderboard()
+
+    })
+
     socket.on('track_score', (data) => {
         console.log('your score is ' + data)
+        async function updateScore() {
+            try {
+                await Leaderboard.update(data[0], socket.id);
+
+            } catch (err) {
+                console.log(err)
+            }
+
+        }
+        updateScore();
     })
-    
+
     socket.on('start_game', (data) => {
         console.log('data in start game ' + data)
-        async function apiCall(){
+        async function apiCall() {
             try {
                 const trivia = await axios.get('https://opentdb.com/api.php?amount=10');
                 console.log(trivia.data.results)
@@ -60,17 +89,16 @@ io.on('connection', (socket) => {
     })
     socket.on('all_data', (data) => {
         console.log(data)
-        async function createUser(req,res){
+        async function createUser() {
             try {
-                const user = await Leaderboard.create(data)
-                res.json('user created' + user)
+                await Leaderboard.create(data, socket.id)
+
             } catch (err) {
-                res.json({err})
+                console.log(err)
             }
         }
         createUser();
     })
-
 
     socket.on('disconnect', () => {
         console.log('user disconnected')
