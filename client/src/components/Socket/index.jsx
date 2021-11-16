@@ -69,7 +69,7 @@ export const Socket = () => {
                     }} />
                     <button onClick={connectRoom}>Enter</button>
                 </form>) : (<div>
-                    <button onClick={handleClick}>{count}</button>
+                    <button onClick={handleClick}>{score}</button>
                     <button onClick={handleEnd}>end game</button>
                     <button onClick={handleStart}>start game</button>
                     <h1>questions is : {questionList}</h1>

@@ -30,7 +30,7 @@ io = socket(server, {
 
 
 io.on('connection', (socket) => {
-    console.log(socket.id)
+
 
 
     socket.on('join_room', (data) => {
@@ -40,18 +40,19 @@ io.on('connection', (socket) => {
     })
 
     socket.on('username', (data) => {
+        console.log(socket.id)
         console.log('username is' + data)
+
     })
 
     socket.on('track_score', (data) => {
         console.log('your score is ' + data)
         async function updateScore(req, res) {
             try {
-                const score = await Leaderboard.update(data[0], data[1]);
-                res.json('Score updated' + score)
-
+                const score = await Leaderboard.update(data[0], socket.id);
+                res('Score updated' + score)
             } catch (err) {
-                res.json('Update error' + err)
+                console.log(err)
             }
 
         }
@@ -76,10 +77,10 @@ io.on('connection', (socket) => {
         console.log(data)
         async function createUser(req, res) {
             try {
-                const user = await Leaderboard.create(data)
-                res.json('user created' + user)
+                const user = await Leaderboard.create(data, socket.id)
+                res('user created' + user)
             } catch (err) {
-                res.json({ err })
+                console.log(err)
             }
         }
         createUser();
