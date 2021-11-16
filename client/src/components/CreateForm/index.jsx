@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import './style.css';
 
-export default function CreateForm() {
+export function CreateForm() {
 
     const [quNumber, setQuNumber] = useState(10);
 
