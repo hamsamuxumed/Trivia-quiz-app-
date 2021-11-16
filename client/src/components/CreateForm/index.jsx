@@ -1,21 +1,27 @@
 import React from 'react';
 import { useState } from 'react';
+import { Game } from '../../pages/index';
 import './style.css';
 
-export function CreateForm() {
-
+export function CreateForm({socket, userName, roomNum}) {
+    const [ gameState, setGameState ] = useState(false);
+    console.log('gamestate ' + gameState)
     const [quNumber, setQuNumber] = useState(10);
 
     const handleInput = (e) => {
         setQuNumber(e.target.value)
     } 
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setGameState(true);
+    }
     
 
     return (
-
-
         <>
-            <form className="roomCreate" action="">
+        {!gameState ?
+            (<form className="roomCreate" onSubmit={handleSubmit}>
                 <h2>Create your own room!</h2>
                 <label htmlFor="difficulty">Select your difficulty:</label>
                 <select name="difficulty" id="difficulty"> 
@@ -31,8 +37,8 @@ export function CreateForm() {
                 <label htmlFor="quNumber">How many questions?</label>
                 <input value={quNumber} type="range" name="quNumber" id="quNumber" min="5" max="20" step="5" onChange={handleInput}/>
                 <span>{quNumber}</span>
-                <input type="submit" value="Create" />
-            </form>
+                <input type="submit" value="Create"/>
+            </form>):(<Game socket={socket} userName={userName} roomNum={roomNum}/>)}
         </>
     )
 }

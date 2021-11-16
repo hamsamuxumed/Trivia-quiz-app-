@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { RoomButton } from '../../components/RoomButton';
 import { Lobby } from '../../pages/index';
 import io from 'socket.io-client';
 import './style.css';
@@ -103,8 +102,8 @@ export const Socket = () => {
                     setRoom(e.target.value)
                 }}/>
                 <button onClick={connectRoom} disabled={!(userName.length >= 3)} >Enter</button>
-                <RoomButton onClick={genRoomId} userName={userName} room={room}/>
-            </form>):(<Lobby roomNum={room}/>)}
+                <button onClick={genRoomId} disabled={!(userName.length >= 3)}>Create a Room</button>
+            </form>):(<Lobby socket={socket} userName={userName} roomNum={room}/>)}
         </div>
     )
 }
