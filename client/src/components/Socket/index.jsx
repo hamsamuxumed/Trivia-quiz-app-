@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { RoomButton } from '../../components/RoomButton';
+import { Lobby } from '../../pages/index';
 import io from 'socket.io-client';
 import './style.css';
 
@@ -9,65 +11,45 @@ export const Socket = () => {
     const [login, setLogin] = useState(false)
     const [room, setRoom] = useState('')
     const [userName, setUsername] = useState('')
-    const [count, setCount] = useState(0)
-    const [questionList, setQuestions]= useState([])
-    const [endGame, setEndgame] = useState(false);
-    const [startGame, setStart] = useState(false)
 
     useEffect(() => {
         socket = io(CONNECTION_URL)
     }, [CONNECTION_URL]);
-
     
-    useEffect(() => {
-        socket.emit('track_score', count)
-    }, [endGame])
-
     const connectRoom = () => {
         setLogin(true)
         socket.emit('join_room', room)
         socket.emit('username', userName)
     }
 
-    useEffect(() => {
-        console.log('in useEffect')
-        socket.on('receive_q', (data) => {
-            console.log('questions'+ JSON.stringify(data))
-            setQuestions(JSON.stringify(data))
-        })
-    },[startGame])
-
-    function handleClick (){
-        setCount((prevCount) => prevCount + 1)
+    const genRoomId = () => {
+        let roomId ='';
+        let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let charLen = chars.length;
+        for(let i = 0; i < 6; i++ ){
+            roomId += chars.charAt(Math.floor(Math.random() * charLen));
+        }
+        setLogin(true)
+        console.log(roomId)
+        socket.emit('join_room', roomId)
+        socket.emit('username', userName)
+        setRoom(roomId)
     }
-
-    function handleEnd (){
-        setEndgame((prevEnd) => !prevEnd)
-    }
-
-    function handleStart(){
-        socket.emit('start_game', room)
-        setStart((prevEnd) => !prevEnd)
-    }
+    
     return(
         <div>
-            {!login ? (
-                <form className ='roomJoin' id='roomJoin'>
-                    <h2>Enter your username and room number</h2>
-                    <input placeholder='name' onChange={(e) => {
-                        setUsername(e.target.value)
-                    }}/>
-                    <input placeholder='room' onChange={(e) => {
-                        setRoom(e.target.value)
-                    }}/>
-                    <button onClick={connectRoom}>Enter</button>
-                </form>):(<div>
-                    <button onClick={handleClick}>{count}</button>
-                    <button onClick={handleEnd}>end game</button>
-                    <button onClick={handleStart}>start game</button>
-                    <h1>questions is : {questionList}</h1>
-                </div>
-            )}
+            {!login ? 
+            (<form className ='roomJoin' id='roomJoin' action='/lobby'>
+                <h2>Enter your username and room number</h2>
+                <input placeholder='name' onChange={(e) => {
+                    setUsername(e.target.value)
+                }}/>
+                <input placeholder='room' onChange={(e) => {
+                    setRoom(e.target.value)
+                }}/>
+                <button onClick={connectRoom} disabled={!(userName.length >= 3)} >Enter</button>
+                <RoomButton onClick={genRoomId} userName={userName} room={room}/>
+            </form>):(<Lobby roomNum={room}/>)}
         </div>
     )
 }
