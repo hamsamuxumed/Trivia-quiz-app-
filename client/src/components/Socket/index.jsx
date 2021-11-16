@@ -9,7 +9,7 @@ export const Socket = () => {
     const [login, setLogin] = useState(false)
     const [room, setRoom] = useState('')
     const [userName, setUsername] = useState('')
-    const [count, setCount] = useState(0)
+    const [score, setScore] = useState(0)
     const [questionList, setQuestions] = useState([])
     const [endGame, setEndgame] = useState(false);
     const [startGame, setStart] = useState(false)
@@ -20,16 +20,21 @@ export const Socket = () => {
 
 
     useEffect(() => {
-        socket.emit('track_score', count)
-    }, [endGame])
+        const userData = [score, userName]
+        socket.emit('track_score', userData)
+    }, [score])
 
     const connectRoom = () => {
         setLogin(true)
-        const data = [userName, count, room]
+        const data = [userName, score, room]
         socket.emit('all_data', data)
         socket.emit('join_room', room)
         socket.emit('username', userName)
     }
+
+    //socket.emit('join_room', room, message => {
+    //     displayMessage(message) //set state
+    // })
 
     useEffect(() => {
         console.log('in useEffect')
@@ -40,7 +45,7 @@ export const Socket = () => {
     }, [startGame])
 
     function handleClick() {
-        setCount((prevCount) => prevCount + 1)
+        setScore((prevCount) => prevCount + 1)
     }
 
     function handleEnd() {

@@ -20,7 +20,7 @@ class Leaderboard {
             }
         })
     }
-    static create(userData){
+    static create(userData) {
         return new Promise(async (res, rej) => {
             try {
                 let insertQuery = await db.query(`INSERT INTO Leaderboard (username, score, room) VALUES ($1,$2,$3) RETURNING *;`, [userData[0], userData[1], userData[2]])
@@ -28,6 +28,19 @@ class Leaderboard {
                 res(user)
             } catch (err) {
                 re(`failed to create user ${err}`)
+            }
+        })
+    }
+
+    static update(score, username) {
+        return new Promise(async (res, rej) => {
+            try {
+                let updateQuery = await db.query(`UPDATE Leaderboard SET score = $1 WHERE username = $2 RETURNING *;`, [score, username])
+                let updateUser = new Leaderboard(updateQuery.rows[0])
+                res(updateUser)
+
+            } catch (err) {
+                rej(`failed to update ${err}`)
             }
         })
     }
