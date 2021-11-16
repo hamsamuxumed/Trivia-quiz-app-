@@ -3,6 +3,7 @@ const app = express();
 const cors = require('cors')
 const axios = require('axios')
 const leaderboardRoutes = require('./routes/leaderboard');
+const Leaderboard = require('./models/Leaderboard')
 
 const socket = require('socket.io');
 
@@ -25,6 +26,10 @@ io = socket(server, {
         credentials: true
     }
 });
+
+socket.emit('join_room', room, message => {
+    displayMessage(message) //set state
+})
 
 io.on('connection', (socket) => {
     console.log(socket.id)
@@ -57,6 +62,18 @@ io.on('connection', (socket) => {
             }
         }
         apiCall()
+    })
+    socket.on('all_data', (data) => {
+        console.log(data)
+        async function createUser(req,res){
+            try {
+                const user = await Leaderboard.create(data)
+                res.json('user created' + user)
+            } catch (err) {
+                res.json({err})
+            }
+        }
+        createUser();
     })
 
     socket.on('disconnect', () => {
