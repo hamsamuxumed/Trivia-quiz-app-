@@ -53,12 +53,10 @@ io.on('connection', (socket) => {
                 if (!data[1]) {
                     console.log("in IF statement")
                     let leaderboard_r = [];
-                    let displayButton = true
 
                     room_leaderboard.map((s) => { leaderboard_r.push(s) })
-
+                    console.log(leaderboard_r)
                     io.in(data[0]).emit('send_score', leaderboard_r)
-                    io.in(data[0]).emit('hide_button', displayButton)
                 }
 
             } catch (error) {
