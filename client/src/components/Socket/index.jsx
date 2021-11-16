@@ -16,6 +16,8 @@ export const Socket = () => {
     const [endGame, setEndgame] = useState(false);
     const [startGame, setStart] = useState(false)
     const [leaderboard, setLeaderboard] = useState([])
+    const [buttonShow, setButtonShow] = useState(false)
+    // const [admin, setAdmin] = useState(false);
 
     useEffect(() => {
         socket = io(CONNECTION_URL)
@@ -45,12 +47,14 @@ export const Socket = () => {
     }, [startGame])
 
     useEffect(() => {
+        let leaderboard_room = []
+        socket.on('send_score', (data) => {
+            data.map((r) => { leaderboard_room.push(r.score) })
+            setLeaderboard(leaderboard_room)
+            //get names to room leaderboard
 
-        let leaderboard_r = []
-        socket.on("receive_room_leaderboard", (data) => {
-            data.map((r) => { leaderboard_r.push(r.score) })
-            setLeaderboard(leaderboard_r)
         })
+
     }, [endGame])
 
     function handleClick() {
@@ -58,14 +62,20 @@ export const Socket = () => {
     }
 
     function handleEnd() {
-        socket.emit('endgame', room)
         setEndgame((prevEnd) => !prevEnd)
+        const data = [room, endGame]
+        socket.emit('endgame', data)
+        socket.on('hide_button', (data) => {
+
+            setButtonShow(data)
+        })
     }
 
     function handleStart() {
         socket.emit('start_game', room)
         setStart((prevEnd) => !prevEnd)
     }
+
 
     const genRoomId = () => {
         let roomId ='';
