@@ -4,7 +4,7 @@ import io from 'socket.io-client';
 import './style.css';
 
 let socket;
-const CONNECTION_URL = 'http://localhost:3000/'
+const CONNECTION_URL = 'https://quiz-your-mind.herokuapp.com/'
 
 export const Socket = () => {
     const [login, setLogin] = useState(false)
