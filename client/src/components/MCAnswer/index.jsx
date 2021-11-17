@@ -31,12 +31,8 @@ export const MCAnswer = ({ data }) => {
 
     }, [data])
 
-
-
-
     const nextQuestion = () => {
         setQuestionCount((prevState) => prevState + 1)
-
     }
 
     console.log(shuffleAnswers[questionCount])

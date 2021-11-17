@@ -34,7 +34,6 @@ export function Game({ socket, userName, roomNum, roomCreated, questionNum, diff
     useEffect(() => {
         console.log('in useEffect')
         socket.on('receive_q', (data) => {
-            console.log(data)
             setQuestionsList(data)
             hideButton('startButton');
             showButton('endButton');
@@ -91,10 +90,10 @@ export function Game({ socket, userName, roomNum, roomCreated, questionNum, diff
         <div>
             {roomCreated &&
                 <>
-                    <button id='startButton' onClick={handleStart}>start game</button>
+                    <button id='startButton' onClick={handleStart}>Start Game</button>
                 </>
             }
-            <button id='endButton' onClick={handleEnd}>end game</button>
+            <button id='endButton' onClick={handleEnd}>End Game</button>
             <button id='scoreItem' onClick={handleClick}>{score}</button>
             <MCAnswer data={questionList} />
             <ul>
