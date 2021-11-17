@@ -4,7 +4,7 @@ import { Game } from '../../pages/index';
 import './style.css';
 
 
-export function CreateForm({ socket, userName, roomNum }) {
+export function CreateForm({ socket, userName, roomNum, roomCreated }) {
     const [gameState, setGameState] = useState(false);
     console.log('gamestate ' + gameState)
     const [quNumber, setQuNumber] = useState(10);
@@ -49,7 +49,7 @@ export function CreateForm({ socket, userName, roomNum }) {
                     <input value={quNumber} type="range" name="quNumber" id="quNumber" min="5" max="20" step="5" onChange={handleQuNumber} />
                     <span>{quNumber}</span>
                     <input type="submit" value="Create" />
-                </form>) : (<Game socket={socket} userName={userName} roomNum={roomNum} questionNum={quNumber} difficulty={quDiffs} type={type} />)}
+                </form>) : (<Game socket={socket} userName={userName} roomNum={roomNum} roomCreated={roomCreated} questionNum={quNumber} difficulty={quDiffs} type={type} />)}
         </>
     )
 }
