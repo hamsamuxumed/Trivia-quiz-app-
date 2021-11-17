@@ -83,17 +83,22 @@ io.on('connection', (socket) => {
 
     socket.on('start_game', (data) => {
         console.log('data in start game ' + data)
-        async function apiCall() {
-            try {
-                const trivia = await axios.get('https://opentdb.com/api.php?amount=10');
-                console.log(trivia.data.results)
-                const result = (trivia.data.results)
+        let result;
+        socket.on('questionData', (q_data) => {
+            async function apiCall() {
+                try {
+
+                    const trivia = await axios.get(`https://opentdb.com/api.php?amount=${q_data[0]}&category=${q_data[3]}&difficulty=${q_data[1]}&type=${q_data[2]}`);
+                    result = (trivia.data.results)
+                }
+                catch (err) {
+                    console.log(err)
+                }
                 io.in(data).emit('receive_q', result)
-            } catch (err) {
-                console.log(err)
             }
-        }
-        apiCall()
+
+            apiCall()
+        })
     })
     socket.on('all_data', (data) => {
         console.log(data)
