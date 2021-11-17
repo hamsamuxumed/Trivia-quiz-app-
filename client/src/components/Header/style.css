@@ -1,10 +1,29 @@
-nav {
-    text-align: center;
-    background-color: darkred;
-    padding: 10px;
+:root {
+    --red: #c94d4d;
+    --gold: #d8832b;
+    --green: #406244;
+    --yellow: #dab71f;
+    --blue: #242551;
 }
 
-.navTitle {
-    color: #fff;
-    font-family: 'Montserrat', sans-serif;
+nav {
+    text-align: center;
+    background-color: var(--blue);
+    padding: 10px;
+    justify-content: center;
+    height: fit-content;
+}
+
+.navTitle {  
+    font-family: "Mandala", sans-serif;
+    font-size: 3rem;
+    color: #dab71f;
+    background-color: #242551;
+    box-shadow: 0 0 0 10px #406244, 0 0 0 20px #d8832b, 0 0 0 30px #c94d4d;
+    border-radius: 5px;
+    text-align: center;
+    width: fit-content;
+    padding: 0.6rem 1rem;
+    margin-right: auto;
+    margin-left: auto;
 }
