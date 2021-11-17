@@ -1,5 +1,7 @@
 const { Pool } = require("pg");
+
 let config;
+
 config = {
     connectionString: process.env.DATABASE_URL,
     ssl: {
