@@ -1,14 +1,17 @@
 import React, { useEffect } from "react";
 import './style.css';
 
+const leaderboardURL = 'https://quiz-your-mind.herokuapp.com/leaderboard/users'
+
 export const GeneralLeaderboard = () => {
 
-useEffect(() => {
+    useEffect(() => {
         const fetchUsers = async () => {
-            let findUsers = await fetch('http://localhost:3000/leaderboard/users');
+            let findUsers = await fetch(leaderboardURL);
             let userJson = await findUsers.json();
             let leaderboard = document.getElementById('leaderboard');
-            let sortUsers = userJson.sort(function(b, a) {
+            let filteredLeaderboard = userJson.filter(user => user.score >= 15)
+            let sortUsers = filteredLeaderboard.sort(function (b, a) {
                 return a.score - b.score;
             });
             console.log(sortUsers)
@@ -24,8 +27,8 @@ useEffect(() => {
             });
         }
         fetchUsers();
-    },[])
-    
+    }, [])
+
 
     return (
         <div>
