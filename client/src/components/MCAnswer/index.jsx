@@ -31,7 +31,7 @@ export const MCAnswer = ({ data }) => {
 
     }, [data])
 
-    console.log(shuffleAnswers)
+
 
 
     const nextQuestion = () => {
@@ -39,13 +39,20 @@ export const MCAnswer = ({ data }) => {
 
     }
 
+    console.log(shuffleAnswers[questionCount])
 
     return (
         <>
             <h4>{questions[questionCount]}</h4>
 
             <ul>
-                <li>{shuffleAnswers[0]}</li>
+
+                <li> {shuffleAnswers[questionCount]}</li>
+                <li> {shuffleAnswers[questionCount]}</li>
+                <li> {shuffleAnswers[questionCount]}</li>
+                <li> {shuffleAnswers[questionCount]}</li>
+
+                {/* {shuffleAnswers[questionCount].map(a => { <li>{a}</li> })} */}
 
             </ul>
 
