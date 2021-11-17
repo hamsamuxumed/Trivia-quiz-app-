@@ -3,12 +3,13 @@ import { Header } from '../../components';
 import { RoomLeaderboard } from '../../components/index';
 import io from 'socket.io-client';
 import './style.css';
+import { MCAnswer } from '../../components';
 
-export function Game({ socket, userName, roomNum }) {
+export function Game({ socket, userName, roomNum, questionNum, difficulty, type }) {
     let room = roomNum;
     //const [count, setCount] = useState(0);
     const [score, setScore] = useState(0);
-    const [questionList, setQuestions] = useState([]);
+    const [questionList, setQuestionsList] = useState([]);
     const [endGame, setEndgame] = useState(false);
     const [startGame, setStart] = useState(false);
     const [leaderboard, setLeaderboard] = useState([]);
@@ -33,8 +34,8 @@ export function Game({ socket, userName, roomNum }) {
     useEffect(() => {
         console.log('in useEffect')
         socket.on('receive_q', (data) => {
-            console.log('questions' + JSON.stringify(data))
-            setQuestions(JSON.stringify(data))
+            console.log(data)
+            setQuestionsList(data)
             hideButton('startButton');
             showButton('endButton');
         })
@@ -48,7 +49,7 @@ export function Game({ socket, userName, roomNum }) {
             console.log(leaderboard_room)
             hideButton('endButton');
             hideButton('scoreItem');
-            setQuestions([])
+            setQuestionsList([])
         })
 
     }, [endGame])
@@ -65,9 +66,13 @@ export function Game({ socket, userName, roomNum }) {
     }
 
     function handleStart() {
+        let data = [questionNum, difficulty, type]
         socket.emit('start_game', room)
+        socket.emit('questionData', data)
         setStart((prevEnd) => !prevEnd)
+        console.log(questionList)
     }
+
 
     const getUserScores = () => {
         const scores = leaderboard.map((u, i) =>
@@ -79,15 +84,18 @@ export function Game({ socket, userName, roomNum }) {
         return scores;
     }
 
+
     return (
         <div>
             <button id='scoreItem' onClick={handleClick}>{score}</button>
             <button id='endButton' onClick={handleEnd}>end game</button>
             <button id='startButton' onClick={handleStart}>start game</button>
-            <h1>questions are: {questionList}</h1>
+
+
+            <MCAnswer data={questionList} />
             <ul>
                 {getUserScores()}
             </ul>
-        </div>
+        </div >
     )
 }
