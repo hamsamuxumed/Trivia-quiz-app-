@@ -5,7 +5,7 @@ import io from 'socket.io-client';
 import './style.css';
 import { MCAnswer } from '../../components';
 
-export function Game({ socket, userName, roomNum, roomCreated, questionNum, difficulty, type }) {
+export function Game({ socket, userName, roomNum, roomCreated, questionNum, difficulty, type, category }) {
     let room = roomNum;
     //const [count, setCount] = useState(0);
     const [score, setScore] = useState(0);
@@ -66,7 +66,7 @@ export function Game({ socket, userName, roomNum, roomCreated, questionNum, diff
     }
 
     function handleStart() {
-        let data = [questionNum, difficulty, type]
+        let data = [questionNum, difficulty, type, category]
         socket.emit('start_game', room)
         socket.emit('questionData', data)
         setStart((prevEnd) => !prevEnd)

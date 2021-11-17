@@ -88,7 +88,7 @@ io.on('connection', (socket) => {
             async function apiCall() {
                 try {
 
-                    const trivia = await axios.get(`https://opentdb.com/api.php?amount=${q_data[0]}&difficulty=${q_data[1]}&type=${q_data[2]}`);
+                    const trivia = await axios.get(`https://opentdb.com/api.php?amount=${q_data[0]}&category=${q_data[3]}&difficulty=${q_data[1]}&type=${q_data[2]}`);
                     result = (trivia.data.results)
                 }
                 catch (err) {
