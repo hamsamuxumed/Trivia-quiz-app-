@@ -76,7 +76,7 @@ export const Socket = () => {
                         <button onClick={connectRoom} disabled={!(userName.length >= 3)} >Enter</button>
                         <button onClick={genRoomId} disabled={!(userName.length >= 3)}>Create a Room</button>
                     </form>
-                <GeneralLeaderboard />
+                {/* <GeneralLeaderboard /> */}
                 </div>) : (<Lobby socket={socket} userName={userName} roomNum={room} createR={createRoom} />)}
         </div>
     )
