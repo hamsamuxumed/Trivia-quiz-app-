@@ -1,14 +1,29 @@
 const Leaderboard = require('../../../models/Leaderboard')
-
-const pg = require('pg');
-const { jest } = require('@jest/globals');
-jest.mock('pg')
 const db = require('../../../dbConfig/init');
 
-describe('Leaderboard', () => {
-    beforeEach(() => jest.clearAllMocks())
+const pg = require('pg');
 
-    afterAll(() => jest.resetAllMocks())
+const server = require('../../../server');
+
+
+
+jest.mock('pg')
+
+describe('Leaderboard', () => {
+
+
+    beforeAll((done) => {
+        server.listen(3001, () => done());
+    })
+
+    beforeEach(() => {
+        jest.clearAllMocks()
+
+    })
+    afterAll((done) => {
+        jest.resetAllMocks()
+        server.listening ? server.close(() => done()) : done();
+    })
 
     //test for all leaderboards
 
@@ -31,13 +46,14 @@ describe('Leaderboard', () => {
                 room: 5,
                 socket_id: 'asdfasf3124124'
             }
-            let socketId = { socket_id: asdfasf3124124 }
+            let socketId = { socket_id: "asdfasf3124124" }
             jest.spyOn(db, 'query')
                 .mockResolvedValueOnce({ rows: [{ ...user, id: 1 }] })
             const result = await Leaderboard.create(user, socketId)
             expect(result).toBeInstanceOf(Leaderboard);
         })
     })
+
 
 
 

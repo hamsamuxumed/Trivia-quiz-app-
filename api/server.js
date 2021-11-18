@@ -1,10 +1,12 @@
 const express = require('express');
 const app = express();
+const server = require('http').Server(app);
+
 const cors = require('cors')
 const axios = require('axios')
 const leaderboardRoutes = require('./routes/leaderboard');
 const Leaderboard = require('./models/Leaderboard')
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3005;
 
 const socket = require('socket.io');
 
@@ -13,14 +15,14 @@ app.use(express.json())
 app.use('/leaderboard', leaderboardRoutes);
 
 // connect routes to server.js
-const server = app.listen(port, () => {
-    console.log(`server running on http://localhost:${port}`)
-});
+let serverio //= app.listen(port, () => {
+//     console.log(`server running on http://localhost:${port}`)
+// });
 
 
 app.get('/', (req, res) => res.send("Welcome to the API"));
 
-io = socket(server, {
+io = socket(serverio, {
     cors: {
         origin: '*',
         methods: ["GET", "POST"],
@@ -119,3 +121,6 @@ io.on('connection', (socket) => {
         console.log('user disconnected')
     })
 })
+
+
+module.exports = server
