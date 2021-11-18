@@ -7,6 +7,7 @@ export const MCAnswer = ({ socket, data }) => {
     const [userAnswer, setUserAnswer] = useState('')
     const [correctAnswer, setCorrectAnswer]= useState('')
     const [score, setScore] = useState(0)
+    const [answered, setAsnwered] = useState(false)
     
 
     useEffect(() => {
@@ -38,10 +39,12 @@ export const MCAnswer = ({ socket, data }) => {
     
     const nextQuestion = () => {
         setQuestionCount((prevState) => prevState + 1)
+        setAsnwered(false)
     }
     
     const handleAnswer = (e) => {
         setUserAnswer(e.target.value)
+        setAsnwered(true);
     }
     
     useEffect(() => {
@@ -73,7 +76,7 @@ export const MCAnswer = ({ socket, data }) => {
 
             {answers ?
                 answers.map((a, i) =>
-                <button id='answer' key={i} value={a} onClick={handleAnswer}>{a}</button>
+                <button id='answer' key={i} value={a} onClick={handleAnswer} disabled={answered}>{a}</button>
                 )
                 : <h1>Press Start Game to Begin!</h1>
             } <br></br>
