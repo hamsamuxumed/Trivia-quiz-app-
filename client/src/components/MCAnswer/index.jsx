@@ -83,7 +83,7 @@ export const MCAnswer = ({ socket, data, difficulty }) => {
 
             {answers ?
                 answers.map((a, i) =>
-                    <button id='answer' key={i} value={a} onClick={handleAnswer} disabled={answered} dangerouslySetInnerHTML={{ __html: a }}></button>
+                    <button id='answer' role='button' key={i} value={a} onClick={handleAnswer} disabled={answered} dangerouslySetInnerHTML={{ __html: a }}></button>
                 )
                 : <h1>Press Start Game to Begin!</h1>
             } <br></br>

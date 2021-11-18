@@ -14,7 +14,6 @@ export function CreateForm({ socket, userName, roomNum, roomCreated }) {
 
     const handleQuNumber = (e) => {
         setQuNumber(e.target.value)
-
     }
 
     const handleQuDiffs = (e) => {
@@ -37,7 +36,7 @@ export function CreateForm({ socket, userName, roomNum, roomCreated }) {
     return (
         <>
             {!gameState ?
-                (<form className="roomCreate" onSubmit={handleSubmit}>
+                (<form className="roomCreate" role='form' onSubmit={handleSubmit}>
                     <h2>Create your own room!</h2>
                     <label htmlFor="difficulty">Select your difficulty:</label>
                     <select name="difficulty" id="difficulty" onChange={handleQuDiffs}>

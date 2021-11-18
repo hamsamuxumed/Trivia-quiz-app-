@@ -5,7 +5,7 @@ import './style.css';
 export const Home = () => {
     return (
         <>
-        <div className="formGrid">
+        <div className="formGrid" role='document'>
             <Socket />
         </div>
         </>
