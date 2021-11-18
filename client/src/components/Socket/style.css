@@ -7,7 +7,7 @@
     margin-top: 100px;
     background-color: #595260;
     padding: 20px 50px 20px 50px;
-    font-family: 'Mandala', sans-serif;
+    font-family: 'Orbitron', sans-serif;
     grid-column: 1;
     height: fit-content;
     color: white;
@@ -22,7 +22,7 @@
     margin-bottom: 10px;
     border: 2px solid #212121;
     border-radius: 5px;
-    font-family: 'Mandala', sans-serif;
+    font-family: 'Orbitron', sans-serif;
 }
 
 body {
@@ -38,7 +38,7 @@ body {
     background-color: var(--blue);
     color: var(--yellow);
     font-size: 1em;
-    font-family: 'Mandala', sans-serif;
+    font-family: 'Orbitron', sans-serif;
     box-shadow: 0 0 0 3px var(--green), 0 0 0 6px var(--yellow), 0 0 0 9px var(--red);
 }
 
@@ -53,13 +53,13 @@ body {
 }
 
 h4 {
-    font-family: 'Mandala', sans-serif;
+    font-family: 'Orbitron', sans-serif;
     font-size: 2rem;
     color: white;
 }
 
 li {
-    font-family: 'Mandala', sans-serif;
+    font-family: 'Orbitron', sans-serif;
     font-size: 1rem;
     color: white;
 }
