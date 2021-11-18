@@ -1,14 +1,25 @@
+:root {
+    --red: #c94d4d;
+    --gold: #d8832b;
+    --green: #406244;
+    --yellow: #dab71f;
+    --blue: #242551;
+}
+
 .roomCreate {
     width: auto;
+    height: fit-content;
     margin-right: auto;
     margin-left: auto;
     text-align: center;
     margin-top: 100px;
-    background-color: lightgrey;
+    background-color: #595260;
     padding: 20px 50px 20px 50px;
-    font-family: 'Montserrat', sans-serif;
-    grid-column: 2;
-    height: 330px;
+    font-family: 'Orbitron', sans-serif;
+    grid-column: 1;
+    color: white;
+    border-radius: 20px;
+    box-shadow: 0 0 0 5px var(--green), 0 0 0 10px var(--yellow), 0 0 0 15px var(--red);
 }
 
 .roomCreate select {
@@ -16,24 +27,30 @@
     width: 100%;
     padding: 5px;
     margin-bottom: 10px;
-    border: 2px solid grey;
+    border: 2px solid #212121;
     border-radius: 5px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .roomCreate input[type='submit'] {
     width: 50%;
     padding: 5px;
-    margin-top: 10px;
+    margin: 10px;
     border: 0;
     border-radius: 5px;
-    background-color: darkred;
-    color: #fff;
+    background-color: var(--blue);
+    /* box-shadow: 0 0 0 5px var(--green), 0 0 0 10px var(--yellow), 0 0 0 15px var(--red); */
+    color: var(--yellow);
     font-size: 1em;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .roomCreate input[type='submit']:hover {
     cursor: pointer;
-    background-color: var(--dark-red);
+    background-color: #193498;
+}
+
+h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: white;
 }

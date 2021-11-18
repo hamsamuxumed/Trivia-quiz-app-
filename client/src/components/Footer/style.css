@@ -1,11 +1,26 @@
 .footer {
-    position: fixed;
+    position: relative;
     bottom: 0;
     width: 100%;
     text-align: center;
-    font-family: 'Montserrat', sans-serif;
-    background-color: darkred;
+    font-family: 'Orbitron', sans-serif;
+    background-color: var(--blue);
     color: #fff;
-    border-top: 5px solid var(--dark-red);
     padding: 10px;
+    margin-top: 4rem;
+    margin-bottom: 0;
+}
+
+#lb {
+    text-decoration: none;
+    width: 50%;
+    padding: 5px;
+    margin: 10px;
+    border: 0;
+    border-radius: 5px;
+    background-color: var(--blue);
+    color: var(--yellow);
+    font-size: 1em;
+    font-family: 'Orbitron', sans-serif;
+    box-shadow: 0 0 0 3px var(--green), 0 0 0 6px var(--yellow), 0 0 0 9px var(--red);
 }

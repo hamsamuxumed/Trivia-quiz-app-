@@ -1,0 +1,23 @@
+table {
+    font-family: 'Orbitron', sans-serif;
+    color: white;
+    width: 70%;
+    text-align: center;
+    border: 2px solid white;
+    border-collapse: collapse;
+}
+
+th {
+    border: 2px solid white;
+}
+
+
+#leaderdiv {
+    position: relative;
+    height:100vh; 
+    margin-left: 400px;
+    margin-right: auto;
+}
+
+
+

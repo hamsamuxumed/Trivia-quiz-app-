@@ -1,26 +1,27 @@
 import React, { useEffect, useState } from 'react';
 
-export const MCAnswer = ({ socket, data }) => {
+export const MCAnswer = ({ socket, data, difficulty }) => {
     const [questions, setQuestions] = useState([])
     const [shuffleAnswers, setShuffleAnswers] = useState([])
     const [questionCount, setQuestionCount] = useState(0)
     const [userAnswer, setUserAnswer] = useState('')
-    const [correctAnswer, setCorrectAnswer]= useState('')
+    const [correctAnswer, setCorrectAnswer] = useState('')
     const [score, setScore] = useState(0)
-    
+    const [answered, setAsnwered] = useState(false)
+
 
     useEffect(() => {
-        
+
         let questionAndAnswer;
         let mixedAnswers;
         let allAnswers = [];
         let allQuestions = [];
         let AllCorrectAnswer = []
-        
+
         data.map((q) => {
-            
+
             questionAndAnswer = {
-                question: q.question,
+                question: { __html: q.question },
                 corr: q.correct_answer,
                 inCorr: q.incorrect_answers
             }
@@ -28,28 +29,36 @@ export const MCAnswer = ({ socket, data }) => {
             AllCorrectAnswer.push(questionAndAnswer.corr)
             allAnswers.push(mixedAnswers)
             allQuestions.push(questionAndAnswer.question)
-            
+
         })
         setShuffleAnswers(allAnswers)
         setQuestions(allQuestions)
         setCorrectAnswer(AllCorrectAnswer)
-        
+
     }, [data])
-    
+
     const nextQuestion = () => {
         setQuestionCount((prevState) => prevState + 1)
+        setAsnwered(false)
     }
-    
+
     const handleAnswer = (e) => {
         setUserAnswer(e.target.value)
+        setAsnwered(true);
     }
-    
+
     useEffect(() => {
         console.log(correctAnswer)
         console.log(userAnswer)
-        const userScore = () =>{
-            if(userAnswer === correctAnswer[questionCount]){
-                setScore((prevState) => prevState += 1)
+        const userScore = () => {
+            if (userAnswer === correctAnswer[questionCount]) {
+                if (difficulty == 'easy') {
+                    setScore((prevState) => prevState += 1)
+                } else if (difficulty == 'medium') {
+                    setScore((prevState) => prevState += 2)
+                } else if (difficulty == 'hard') {
+                    setScore((prevState) => prevState += 3)
+                }
                 console.log('correct')
             } else {
                 console.log('incorrect')
@@ -63,22 +72,27 @@ export const MCAnswer = ({ socket, data }) => {
     }, [score])
 
     console.log(correctAnswer)
-            
+
     let answers = shuffleAnswers[questionCount]
     // console.log('this is the mapped answers'+answersMap)
     return (
-        <>
-            <h4>{questions[questionCount]}</h4>
+
+        <div className="roomJoin">
+            <h4 dangerouslySetInnerHTML={questions[questionCount]}></h4>
+
 
             {answers ?
                 answers.map((a, i) =>
-                <button id='answer' role='button' key={i} value={a} onClick={handleAnswer}>{a}</button>
+                    <button id='answer' role='button' key={i} value={a} onClick={handleAnswer} disabled={answered} dangerouslySetInnerHTML={{ __html: a }}></button>
                 )
-                : <h1>no</h1>
+                : <h1>Press Start Game to Begin!</h1>
             } <br></br>
 
-            <button onClick={nextQuestion}>Next Question</button>
 
-        </>
+
+            <button id="nextQuestion" onClick={nextQuestion}>Next Question</button>
+
+        </div>
+
     )
 }

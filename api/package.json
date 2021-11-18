@@ -4,12 +4,26 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "dev": "node server.js",
-    "seedDev": "node dbConfig/seedDev.js"
+    "seedDev": "node dbConfig/seedDev.js",
+    "test": "jest --setupFiles ./tests/integration/config.js --watchAll --coverage --detectOpenHandles --runInBand --verbose",
+    "unitTests": "jest --testPathPattern=/unit/ --watchAll --verbose",
+    "coverage": "jest --testPathPattern=/unit/ --coverage --detectOpenHandles --runInBand"
   },
-  "keywords": [],
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/dbConfig/",
+      "/server.js/",
+      "<rootDir>/api/server.js",
+      "server.js"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/api/server.js"
+    ]
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
