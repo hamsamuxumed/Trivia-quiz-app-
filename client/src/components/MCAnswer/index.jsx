@@ -20,7 +20,7 @@ export const MCAnswer = ({ socket, data }) => {
         data.map((q) => {
             
             questionAndAnswer = {
-                question: q.question,
+                question:{__html: q.question},
                 corr: q.correct_answer,
                 inCorr: q.incorrect_answers
             }
