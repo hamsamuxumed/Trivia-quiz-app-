@@ -51,3 +51,16 @@ body {
     background-color: grey;
     cursor: auto;
 }
+
+h4 {
+    font-family: 'Mandala', sans-serif;
+    font-size: 2rem;
+    color: white;
+}
+
+li {
+    font-family: 'Mandala', sans-serif;
+    font-size: 1rem;
+    color: white;
+}
+
