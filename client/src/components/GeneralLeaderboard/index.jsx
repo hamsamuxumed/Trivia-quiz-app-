@@ -31,7 +31,8 @@ export const GeneralLeaderboard = () => {
 
 
     return (
-        <div>
+        <div id="leaderdiv">
+            <h4>ALL-TIME LEADERBOARD</h4>
             <table>
                 <thead>
                     <tr>
@@ -39,7 +40,7 @@ export const GeneralLeaderboard = () => {
                         <th>Score</th>
                     </tr>
                 </thead>
-                <tbody id='leaderboard'>
+                <tbody  id="leaderboard">
                 </tbody>
             </table>
         </div>

@@ -75,7 +75,7 @@ export const MCAnswer = ({ socket, data }) => {
                 answers.map((a, i) =>
                 <button id='answer' key={i} value={a} onClick={handleAnswer}>{a}</button>
                 )
-                : <h1>no</h1>
+                : <h1>Press Start Game to Begin!</h1>
             } <br></br>
 
 

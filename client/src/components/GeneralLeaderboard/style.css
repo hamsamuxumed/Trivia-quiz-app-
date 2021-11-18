@@ -1,0 +1,18 @@
+table {
+    font-family: 'Mandala', sans-serif;
+    color: white;
+    width: 100%;
+    text-align: center;
+    border: 2px solid white;
+    border-collapse: collapse;
+}
+
+th {
+    border: 2px solid white;
+}
+
+#leaderdiv {
+    position: fixed;
+    left: 1rem;
+    top: 10rem;
+}
