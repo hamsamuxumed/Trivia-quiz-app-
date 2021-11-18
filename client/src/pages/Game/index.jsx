@@ -75,8 +75,9 @@ export function Game({ socket, userName, roomNum, roomCreated, questionNum, diff
     const getUserScores = () => {
         const scores = leaderboard.map((u, i) =>
             <li key={i}>
-                <span>{u.username}</span>
-                <span>{u.score}</span>
+                <span><strong>{u.username}</strong></span>
+                <br />
+                <span> - {u.score}</span>
             </li>
         )
         return scores;
@@ -95,7 +96,7 @@ export function Game({ socket, userName, roomNum, roomCreated, questionNum, diff
             <button id='endButton' onClick={handleEnd}>End Game</button>
             <button id='scoreItem' onClick={handleClick}>{score}</button>
             <MCAnswer socket={socket} data={questionList} />
-            <ul>
+            <ul id="roomscores"> Game Results:
                 {getUserScores()}
             </ul>
             { endGame && <GeneralLeaderboard /> }
