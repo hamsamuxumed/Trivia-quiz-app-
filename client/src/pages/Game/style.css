@@ -32,3 +32,14 @@
     font-family: 'Orbitron', sans-serif;
     box-shadow: 0 0 0 3px var(--green), 0 0 0 6px var(--yellow), 0 0 0 9px var(--red);
 }
+
+#roomscores > li {
+    list-style: none;
+}
+
+ul {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    color: white;
+    border: 2px solid white;
+}

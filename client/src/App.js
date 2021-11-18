@@ -9,8 +9,8 @@ import './style.css'
 function App (){
     return(
         <div id='app'>
-            <Header />
                 {/* <Pages.Home/> */}
+                <Header />
                 <Switch>
                     <Route exact path='/'>
                         <Pages.Home />
@@ -22,7 +22,7 @@ function App (){
                         Nothing found, double check URL
                     </Route>
                 </Switch>
-            <Footer />
+                <Footer />
         </div>
     )
 }
