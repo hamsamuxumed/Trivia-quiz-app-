@@ -7,11 +7,11 @@
     background-color: var(--blue);
     color: #fff;
     padding: 10px;
-    margin-top: 3rem;
+    margin-top: 4rem;
     margin-bottom: 0;
 }
 
-a {
+#lb {
     text-decoration: none;
     width: 50%;
     padding: 5px;

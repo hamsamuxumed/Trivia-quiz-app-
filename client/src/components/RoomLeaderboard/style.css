@@ -1,9 +1,9 @@
-#roomscores {
+/* #roomscores {
     position: fixed;
     right: 0;
     top: 10rem;
     margin-right: 1rem;
-}
+} */
 
 #roomscores > li {
     list-style: none;

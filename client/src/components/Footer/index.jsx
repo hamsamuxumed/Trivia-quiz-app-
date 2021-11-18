@@ -6,7 +6,7 @@ export const Footer = () => {
     return (
         <section className='footer'>
             <h1>2021</h1>
-            <Link to='/leaderboard'>Leaderoard</Link>
+            <Link id='lb' to='/leaderboard'>Leaderboard</Link>
         </section>
     )
 }

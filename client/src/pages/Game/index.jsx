@@ -94,7 +94,7 @@ export function Game({ socket, userName, roomNum, roomCreated, questionNum, diff
                 </>
             }
             <button id='endButton' onClick={handleEnd}>End Game</button>
-            <button id='scoreItem' onClick={handleClick}>{score}</button>
+            {/* <button id='scoreItem' onClick={handleClick}>{score}</button> */}
             <MCAnswer socket={socket} data={questionList} difficulty={difficulty} />
             <ul id="roomscores"> Game Results:
                 {getUserScores()}
