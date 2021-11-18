@@ -20,7 +20,7 @@ export const MCAnswer = ({ socket, data }) => {
         data.map((q) => {
             
             questionAndAnswer = {
-                question: q.question,
+                question:{__html: q.question},
                 corr: q.correct_answer,
                 inCorr: q.incorrect_answers
             }
@@ -68,18 +68,18 @@ export const MCAnswer = ({ socket, data }) => {
     // console.log('this is the mapped answers'+answersMap)
     return (
         <div className="roomJoin">
-            <h4>{questions[questionCount]}</h4>
+            <h4 dangerouslySetInnerHTML={questions[questionCount]}></h4>
 
 
             {answers ?
                 answers.map((a, i) =>
                 <button id='answer' key={i} value={a} onClick={handleAnswer}>{a}</button>
                 )
-                : <h1>no</h1>
+                : <h1>Press Start Game to Begin!</h1>
             } <br></br>
 
 
-            <button  onClick={nextQuestion}>Next Question</button>
+            <button id="nextQuestion" onClick={nextQuestion}>Next Question</button>
 
         </div>
     )
