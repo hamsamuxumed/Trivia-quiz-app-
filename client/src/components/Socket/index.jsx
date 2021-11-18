@@ -12,24 +12,12 @@ export const Socket = () => {
     const [room, setRoom] = useState('')
     const [userName, setUsername] = useState('')
     const [score, setScore] = useState(0)
-    const [questionList, setQuestions] = useState([])
-    const [endGame, setEndgame] = useState(false);
-    const [startGame, setStart] = useState(false)
-    const [leaderboard, setLeaderboard] = useState([])
-    const [buttonShow, setButtonShow] = useState(false)
     const [createRoom, setCreateRoom] = useState(false)
     // const [admin, setAdmin] = useState(false);
 
     useEffect(() => {
         socket = io(CONNECTION_URL)
     }, [CONNECTION_URL]);
-
-
-    useEffect(() => {
-        const userData = [score, userName]
-        socket.emit('track_score', userData)
-    }, [score])
-
 
     const connectRoom = () => {
         setLogin(true)
@@ -38,12 +26,6 @@ export const Socket = () => {
         socket.emit('join_room', room)
         socket.emit('username', userName)
     }
-
-    useEffect(() => {
-        socket.on('receive_q', (data) => {
-            setQuestions(JSON.stringify(data))
-        })
-    }, [startGame])
 
     const genRoomId = () => {
         let roomId = '';
@@ -65,7 +47,7 @@ export const Socket = () => {
         <div>
             {!login ?
                 (<div>
-                    <form className='roomJoin' id='roomJoin' action='/lobby'>
+                    <form className='roomJoin' id='roomJoin' role='form' action='/lobby'>
                         <h2>Enter your username and room number</h2>
                         <input placeholder='name' onChange={(e) => {
                             setUsername(e.target.value)

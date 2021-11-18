@@ -74,7 +74,7 @@ export function Game({ socket, userName, roomNum, roomCreated, questionNum, diff
 
     const getUserScores = () => {
         const scores = leaderboard.map((u, i) =>
-            <li key={i}>
+            <li key={i} role='listbox'>
                 <span>{u.username}</span>
                 <span>{u.score}</span>
             </li>
@@ -86,7 +86,7 @@ export function Game({ socket, userName, roomNum, roomCreated, questionNum, diff
 
 
     return (
-        <div>
+        <div role='document'>
             {roomCreated &&
                 <>
                     <button id='startButton' onClick={handleStart}>Start Game</button>

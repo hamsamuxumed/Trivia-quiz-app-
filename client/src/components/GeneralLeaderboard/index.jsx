@@ -14,7 +14,6 @@ export const GeneralLeaderboard = () => {
             let sortUsers = filteredLeaderboard.sort(function (b, a) {
                 return a.score - b.score;
             });
-            console.log(sortUsers)
             sortUsers.forEach(u => {
                 let tableRow = document.createElement('tr');
                 let nametd = document.createElement('td');
@@ -23,6 +22,7 @@ export const GeneralLeaderboard = () => {
                 scoretd.textContent = u.score;
                 tableRow.appendChild(nametd);
                 tableRow.appendChild(scoretd);
+                tableRow.setAttribute('title', 'leaderboardUser')
                 leaderboard.appendChild(tableRow);
             });
         }
@@ -32,7 +32,7 @@ export const GeneralLeaderboard = () => {
 
     return (
         <div>
-            <table>
+            <table role='table'>
                 <thead>
                     <tr>
                         <th>Name</th>

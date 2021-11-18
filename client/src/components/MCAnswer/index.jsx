@@ -72,7 +72,7 @@ export const MCAnswer = ({ socket, data }) => {
 
             {answers ?
                 answers.map((a, i) =>
-                <button id='answer' key={i} value={a} onClick={handleAnswer}>{a}</button>
+                <button id='answer' role='button' key={i} value={a} onClick={handleAnswer}>{a}</button>
                 )
                 : <h1>no</h1>
             } <br></br>

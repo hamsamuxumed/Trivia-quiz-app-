@@ -9,6 +9,20 @@
     "build": "webpack --config config/webpack.prod.config.js",
     "coverage": "jest --setupFilesAfterEnv ./src/test/setupTests.js --coverage --watchAll=false --env=jsdom"
   },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less|scss)$": "<rootDir>/__mocks__/styleMock.js"
+    },
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/actions/",
+      "Socket",
+      "pages/index.js",
+      "components/index.js"
+    ],
+    "testEnvironment": "jsdom"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -23,6 +37,7 @@
     "babel-jest": "^27.3.1",
     "babel-loader": "^8.2.3",
     "css-loader": "^6.5.1",
+    "enzyme": "^3.11.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^27.3.1",
