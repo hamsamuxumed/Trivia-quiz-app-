@@ -79,7 +79,7 @@ export const MCAnswer = ({ socket, data }) => {
             } <br></br>
 
 
-            <button  onClick={nextQuestion}>Next Question</button>
+            <button id="nextQuestion" onClick={nextQuestion}>Next Question</button>
 
         </div>
     )

@@ -64,3 +64,10 @@ li {
     color: white;
 }
 
+#nextQuestion {
+    background-color: var(--red);
+}
+
+#nextQuestion:hover {
+    background-color: var(--gold);
+}
