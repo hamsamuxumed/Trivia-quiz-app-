@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-export const MCAnswer = ({ socket, data }) => {
+export const MCAnswer = ({ socket, data, difficulty }) => {
     const [questions, setQuestions] = useState([])
     const [shuffleAnswers, setShuffleAnswers] = useState([])
     const [questionCount, setQuestionCount] = useState(0)
@@ -52,7 +52,13 @@ export const MCAnswer = ({ socket, data }) => {
         console.log(userAnswer)
         const userScore = () =>{
             if(userAnswer === correctAnswer[questionCount]){
-                setScore((prevState) => prevState += 1)
+                if(difficulty == 'easy'){
+                    setScore((prevState) => prevState += 1)
+                } else if (difficulty == 'medium'){
+                    setScore((prevState) => prevState += 2)
+                } else if (difficulty == 'hard'){
+                    setScore((prevState) => prevState += 3)
+                }
                 console.log('correct')
             } else {
                 console.log('incorrect')
