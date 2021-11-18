@@ -67,8 +67,9 @@ export const MCAnswer = ({ socket, data }) => {
     let answers = shuffleAnswers[questionCount]
     // console.log('this is the mapped answers'+answersMap)
     return (
-        <>
+        <div className="roomJoin">
             <h4>{questions[questionCount]}</h4>
+
 
             {answers ?
                 answers.map((a, i) =>
@@ -77,8 +78,9 @@ export const MCAnswer = ({ socket, data }) => {
                 : <h1>no</h1>
             } <br></br>
 
-            <button onClick={nextQuestion}>Next Question</button>
 
-        </>
+            <button  onClick={nextQuestion}>Next Question</button>
+
+        </div>
     )
 }
