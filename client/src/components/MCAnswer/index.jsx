@@ -68,7 +68,7 @@ export const MCAnswer = ({ socket, data }) => {
     // console.log('this is the mapped answers'+answersMap)
     return (
         <div className="roomJoin">
-            <h4>{questions[questionCount]}</h4>
+            <h4 dangerouslySetInnerHTML={questions[questionCount]}></h4>
 
 
             {answers ?
