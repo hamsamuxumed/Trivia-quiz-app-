@@ -1,5 +1,6 @@
 .roomJoin {
     width: auto;
+    max-width: 75vw;
     margin-right: auto;
     margin-left: auto;
     text-align: center;
@@ -8,11 +9,10 @@
     padding: 20px 50px 20px 50px;
     font-family: 'Mandala', sans-serif;
     grid-column: 1;
-    height: 330px;
+    height: fit-content;
     color: white;
     border-radius: 20px;
     box-shadow: 0 0 0 5px var(--green), 0 0 0 10px var(--yellow), 0 0 0 15px var(--red);
-
 }
 
 .roomJoin input {
