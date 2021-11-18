@@ -15,7 +15,7 @@
     margin-top: 100px;
     background-color: #595260;
     padding: 20px 50px 20px 50px;
-    font-family: 'Mandala', sans-serif;
+    font-family: 'Orbitron', sans-serif;
     grid-column: 1;
     color: white;
     border-radius: 20px;
@@ -29,7 +29,7 @@
     margin-bottom: 10px;
     border: 2px solid #212121;
     border-radius: 5px;
-    font-family: 'Mandala', sans-serif;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .roomCreate input[type='submit'] {
@@ -42,7 +42,7 @@
     /* box-shadow: 0 0 0 5px var(--green), 0 0 0 10px var(--yellow), 0 0 0 15px var(--red); */
     color: var(--yellow);
     font-size: 1em;
-    font-family: 'Mandala', sans-serif;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .roomCreate input[type='submit']:hover {
@@ -51,6 +51,6 @@
 }
 
 h3 {
-    font-family: 'Mandala', sans-serif;
+    font-family: 'Orbitron', sans-serif;
     color: white;
 }

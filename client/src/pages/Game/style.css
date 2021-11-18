@@ -11,7 +11,7 @@
     background-color: var(--blue);
     color: var(--yellow);
     font-size: 1em;
-    font-family: 'Mandala', sans-serif;
+    font-family: 'Orbitron', sans-serif;
     box-shadow: 0 0 0 3px var(--green), 0 0 0 6px var(--yellow), 0 0 0 9px var(--red);
 }
 
@@ -29,6 +29,6 @@
     background-color: var(--blue);
     color: var(--yellow);
     font-size: 1em;
-    font-family: 'Mandala', sans-serif;
+    font-family: 'Orbitron', sans-serif;
     box-shadow: 0 0 0 3px var(--green), 0 0 0 6px var(--yellow), 0 0 0 9px var(--red);
 }
