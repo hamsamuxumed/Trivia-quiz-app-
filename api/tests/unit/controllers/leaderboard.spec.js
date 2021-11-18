@@ -27,12 +27,23 @@ describe('leaderboard controller', () => {
 
 
     describe('index', () => {
-        test('it should give all users and a status code pf 200', async () => {
+        test('it should give all users and a status code of 200', async () => {
             jest.spyOn(Leaderboard, 'all', 'get')
                 .mockResolvedValue(['user1', 'user2', 'user3']);
             await leaderboardController.index(null, mockRes);
             expect(mockStatus).toHaveBeenCalledWith(200)
             expect(mockJson).toHaveBeenCalledWith(['user1', 'user2', 'user3'])
         })
+
+        // test('it should give all users and a status code of 500', async () => {
+        //     jest.spyOn(Leaderboard, 'all', 'get')
+        //         .mockResolvedValue();
+        //     await leaderboardController.index(null, mockRes);
+        //     expect(mockStatus).toHaveBeenCalledWith(500)
+        //     expect(mockJson).toHaveBeenCalledWith(['user1', 'user2', 'user3'])
+        // })
+
+
+
     })
 })

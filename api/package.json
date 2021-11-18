@@ -15,7 +15,13 @@
     "testEnvironment": "node",
     "coveragePathIgnorePatterns": [
       "/node_modules/",
-      "/dbConfig/"
+      "/dbConfig/",
+      "/server.js/",
+      "<rootDir>/api/server.js",
+      "server.js"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/api/server.js"
     ]
   },
   "author": "",

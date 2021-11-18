@@ -55,7 +55,41 @@ describe('Leaderboard', () => {
     })
 
 
+    // test for update
 
+    describe('update', () => {
+        test('it updates a new user on successful db query', async () => {
+            let user = {
+                username: 'tesTbob',
+                score: 6,
+                room: 6,
+                socket_id: 'zzziii'
+            }
+            let socketId = { socket_id: "zzziii" }
+            jest.spyOn(db, 'query')
+                .mockResolvedValueOnce({ rows: [{ ...user, id: 1 }] })
+            const result = await Leaderboard.update(user, socketId)
+            expect(result).toBeInstanceOf(Leaderboard);
+        })
+    })
+
+    // test for getRoomLeaderboard
+
+    describe('getRoomLeaderboard', () => {
+        test('it get leaderboards of a room on successful db query', async () => {
+            let user = {
+                username: 'tesTbob',
+                score: 6,
+                room: 6,
+                socket_id: 'zzziii'
+            }
+
+            jest.spyOn(db, 'query')
+                .mockResolvedValueOnce({ rows: [user] })
+            const result = await Leaderboard.getRoomLeaderboard(1)
+            expect(result).toBeInstanceOf(Array);
+        })
+    })
 
 
 })
