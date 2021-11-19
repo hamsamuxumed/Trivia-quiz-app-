@@ -3,7 +3,7 @@ import { GeneralLeaderboard } from '../../components';
 
 export function Leaderboard() {
     return (
-        <div>
+        <div role='document'>
             <GeneralLeaderboard />
         </div>
     )
