@@ -6,6 +6,12 @@
     --blue: #242551;
 }
 
+@media only screen and (max-width: 600px) {
+    .navTitle {
+        font-size: 1rem;
+    }
+  }
+
 nav {
     text-align: center;
     background-color: var(--blue);
