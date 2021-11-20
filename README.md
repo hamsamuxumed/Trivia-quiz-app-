@@ -1,4 +1,4 @@
-# LAP 3 Trivia Game
+# Trivia Game
 An online multiplayer trivia game using web sockets. A host can create a game after selecting question difficulty, category and quantity. The room code is then shared to other players wishing to join.
 
 ![image](https://user-images.githubusercontent.com/37987393/142598778-70cc7ef8-4605-4652-ae02-0ff2100d253b.png)
@@ -22,6 +22,18 @@ An online multiplayer trivia game using web sockets. A host can create a game af
 - Players must select the right answer to recieve a point.
 - The session leaderboard is displayed at the end of the game.
 - A leaderboard of the highest scoring players of all time is displayed on the homepage and at the end of the game.
+
+## Technologies used
+- Socket io
+- React
+- Node js, express
+- docker
+- PostgreSQL
+- Jest, Supertest
+- Webpack
+- Babel
+
+
 
 ## Bugs
 - Currently, a game can start with just one player. Validation to check the number of players in the room may need to be added to prevent this.
