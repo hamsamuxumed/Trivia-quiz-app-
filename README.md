@@ -32,7 +32,8 @@ An online multiplayer trivia game using web sockets. A host can create a game af
 - Jest, Supertest
 - Webpack
 - Babel
-
+- Netlify
+- Heroku
 
 
 ## Bugs
